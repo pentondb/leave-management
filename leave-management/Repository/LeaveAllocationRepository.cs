@@ -28,7 +28,7 @@ namespace leave_management.Repository
             return Save();
         }
 
-        public LeaveAllocation Find(int id)
+        public LeaveAllocation FindById(int id)
         {
             var leaveAllocation = _db.LeaveAllocations.Find(id);
             return leaveAllocation;
@@ -37,6 +37,12 @@ namespace leave_management.Repository
         public ICollection<LeaveAllocation> FindAll()
         {
             return _db.LeaveAllocations.ToList();
+        }
+
+        public bool isExists(int id)
+        {
+            var exists = _db.LeaveAllocations.Any(q => q.Id == id);
+            return exists;
         }
 
         public bool Save()

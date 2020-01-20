@@ -28,7 +28,7 @@ namespace leave_management.Repository
             return Save();
         }
 
-        public LeaveHistory Find(int id)
+        public LeaveHistory FindById(int id)
         {
             var leaveHistory = _db.LeaveHistories.Find(id);
             return leaveHistory;
@@ -38,6 +38,12 @@ namespace leave_management.Repository
         public ICollection<LeaveHistory> FindAll()
         {
             return _db.LeaveHistories.ToList();
+        }
+
+        public bool isExists(int id)
+        {
+            var exists = _db.LeaveHistories.Any(q => q.Id == id);
+            return exists;
         }
 
         public bool Save()
