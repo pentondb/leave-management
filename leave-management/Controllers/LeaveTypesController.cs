@@ -6,11 +6,13 @@ using AutoMapper;
 using leave_management.Contracts;
 using leave_management.Data;
 using leave_management.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace leave_management.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class LeaveTypesController : Controller
     {
 
@@ -35,7 +37,8 @@ namespace leave_management.Controllers
         // GET: LeaveTypes/Details/5
         public ActionResult Details(int id)
         {
-            if (!_repo.isExists(id)){
+            if (!_repo.isExists(id))
+            {
                 return NotFound();
             }
             var leaveType = _repo.FindById(id);
